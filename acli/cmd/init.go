@@ -44,12 +44,12 @@ func runInit(ccmd *cobra.Command, args []string) {
 		repo.CopyFolder(project, template)
 		fmt.Println("Project created. Instructions:\n  cd " + project + "\n  make install or make install-git")
 	} else {
-		fmt.Println("No project name is specified for example:\n  acli my-vite-go-app --template vite-go")
+		fmt.Println("No project name is specified for example:\n  acli my-react-go-app --template react-go")
 	}
 }
 
 func init() {
-	initCmd.PersistentFlags().StringVarP(&template, "template", "t", "vite-go", "the name of the template.")
+	initCmd.PersistentFlags().StringVarP(&template, "template", "t", "react-go", "the name of the template.")
 	//initCmd.PersistentFlags().BoolVarP(&gitFlag, "git-init", "g", false, "if the project should be initialized with a git repo.")
 	viper.BindPFlag("template", initCmd.PersistentFlags().Lookup("template"))
 	//viper.BindPFlag("git-init", initCmd.PersistentFlags().Lookup("git-init"))

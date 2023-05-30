@@ -1,19 +1,19 @@
 [
     {
         "id": 1,
-        "name": "vite-go",
+        "name": "react-go",
         "path": "/vite-go",
         "description": "A template that generates a Vite React Typescript with TailwindCSS and Axios for the frontend and a Go server with static file and APIs server a Gin router. It includes a Makefile to build locally and to build a container."
     },
     {
         "id": 2,
-        "name": "vite-csharp",
+        "name": "react-csharp",
         "path": "/vite-csharp",
         "description": "A template that generates a Vite React Typescript with TailwindCSS and Axios for the frontend and a C# server with static file and APIs server. It includes a Makefile to build locally and to build a container."
     },
     {
         "id": 3,
-        "name": "vite-rust",
+        "name": "react-rust",
         "path": "/vite-rust",
         "description": "A template that generates a Vite React Typescript with TailwindCSS and Axios for the frontend and a Rust server with static file and APIs server a Rocket router. It includes a Makefile to build locally and to build a container."
     }
