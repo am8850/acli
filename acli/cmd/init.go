@@ -4,6 +4,7 @@ import (
 	"acli/pkg/repo"
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -35,11 +36,15 @@ func runInit(ccmd *cobra.Command, args []string) {
 		// 	msg += "\nWithout git init"
 		// }
 		fmt.Println(msg)
+		os.Mkdir("./"+project, 0755)
 		err := repo.CloneToFilesystem("", "")
 		if err != nil {
 			log.Fatalln("Error during git clone: ", err)
 		}
-
+		repo.CopyFolder(project, template)
+		fmt.Println("Project created. Instructions:\n  cd " + project + "\n  make install or make install-git")
+	} else {
+		fmt.Println("No project name is specified for example:\n  acli my-vite-go-app --template vite-go")
 	}
 }
 

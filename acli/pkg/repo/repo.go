@@ -2,6 +2,7 @@ package repo
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -10,6 +11,11 @@ import (
 	"github.com/go-git/go-git/v5"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+)
+
+const (
+	temp_folder_name = "./temp_acli"
+	default_git_repo = "https://github.com/am8850/acli.git"
 )
 
 func ReadRepoContents(repo string) []string {
@@ -61,19 +67,20 @@ func validateRepoUrl(repoUrl string) string {
 }
 
 func CloneToFilesystem(path, url string) error {
+
 	if path == "" {
-		path = "./temp"
+		path = temp_folder_name
 	}
 	if url == "" {
-		url = "https://github.com/am8850/acli.git"
+		url = default_git_repo
 	}
 	_, err := git.PlainClone(path, false, &git.CloneOptions{
-		URL:      url,
-		Progress: os.Stdout,
+		URL: url,
+		//Progress: os.Stdout,
 	})
-	if path == "./temp" {
-		os.RemoveAll(path)
-	}
+	// if path == temp_folder_name {
+	// 	os.RemoveAll(path)
+	// }
 	return err
 }
 
@@ -118,4 +125,75 @@ func walkMatch(root, pattern string) ([]string, error) {
 func getSlug(s string) string {
 	slices := strings.Split(s, "/")
 	return slices[len(slices)-1]
+}
+
+func CopyFile(src, dst string) error {
+	source, err := os.Open(src)
+	if err != nil {
+		return err
+	}
+	defer source.Close()
+
+	destination, err := os.Create(dst)
+	if err != nil {
+		return err
+	}
+	defer destination.Close()
+
+	_, err = io.Copy(destination, source)
+	return err
+}
+
+func CheckDir(path string) bool {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true // Directory exists
+	}
+	if os.IsNotExist(err) {
+		return false // Directory does not exist
+	}
+	return false // Error occurred while checking directory existence
+}
+
+func CopyFolder(project, template string) error {
+	src := temp_folder_name + "/templates/" + template + "/"
+	dst := "./" + project + "/"
+
+	if !CheckDir(src) || !CheckDir(dst) {
+		fmt.Println("Source: ", src)
+		fmt.Println("Destination: ", dst)
+		log.Fatalln("The target or the source directory does not exist.")
+	}
+
+	err := filepath.Walk(src, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		relPath, err := filepath.Rel(src, path)
+		if err != nil {
+			return err
+		}
+
+		destPath := filepath.Join(dst, relPath)
+
+		if info.IsDir() {
+			err := os.MkdirAll(destPath, info.Mode())
+			if err != nil {
+				return err
+			}
+		} else {
+			err := CopyFile(path, destPath)
+			if err != nil {
+				return err
+			}
+		}
+
+		return nil
+	})
+
+	// Always delete the temp folder
+	os.RemoveAll(temp_folder_name)
+
+	return err
 }
