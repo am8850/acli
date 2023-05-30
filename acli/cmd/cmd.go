@@ -29,6 +29,7 @@ func init() {
 	cobra.OnInitialize(initConfig)
 	acliCmd.AddCommand(initCmd)
 	acliCmd.AddCommand(lsCmd)
+	acliCmd.AddCommand(infoCmd)
 }
 
 func initConfig() {

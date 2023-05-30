@@ -14,8 +14,8 @@ import (
 )
 
 const (
-	temp_folder_name = "./temp_acli"
-	default_git_repo = "https://github.com/am8850/acli.git"
+	Temp_folder_name = "./temp_acli"
+	Default_git_repo = "https://github.com/am8850/acli.git"
 )
 
 func ReadRepoContents(repo string) []string {
@@ -69,10 +69,10 @@ func validateRepoUrl(repoUrl string) string {
 func CloneToFilesystem(path, url string) error {
 
 	if path == "" {
-		path = temp_folder_name
+		path = Temp_folder_name
 	}
 	if url == "" {
-		url = default_git_repo
+		url = Default_git_repo
 	}
 	_, err := git.PlainClone(path, false, &git.CloneOptions{
 		URL: url,
@@ -156,7 +156,7 @@ func CheckDir(path string) bool {
 }
 
 func CopyFolder(project, template string) error {
-	src := temp_folder_name + "/templates/" + template + "/"
+	src := Temp_folder_name + "/templates/" + template + "/"
 	dst := "./" + project + "/"
 
 	if !CheckDir(src) || !CheckDir(dst) {
@@ -192,8 +192,10 @@ func CopyFolder(project, template string) error {
 		return nil
 	})
 
-	// Always delete the temp folder
-	os.RemoveAll(temp_folder_name)
-
 	return err
+}
+
+func RemoveTempFolder() {
+	// Always delete the temp folder
+	os.RemoveAll(Temp_folder_name)
 }

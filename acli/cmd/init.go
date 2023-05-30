@@ -3,7 +3,6 @@ package cmd
 import (
 	"acli/pkg/repo"
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -15,10 +14,11 @@ var (
 	//gitFlag  bool
 
 	initCmd = &cobra.Command{
-		Use:   "init project_name",
-		Short: "init a project with a template",
-		Long:  ``,
-		Run:   runInit,
+		Use:     "init project_name",
+		Short:   "init a project with a template",
+		Long:    ``,
+		Aliases: []string{"Init", "create", "Create"},
+		Run:     runInit,
 	}
 )
 
@@ -39,9 +39,13 @@ func runInit(ccmd *cobra.Command, args []string) {
 		os.Mkdir("./"+project, 0755)
 		err := repo.CloneToFilesystem("", "")
 		if err != nil {
-			log.Fatalln("Error during git clone: ", err)
+			fmt.Println("Unable to process template.")
 		}
-		repo.CopyFolder(project, template)
+		err = repo.CopyFolder(project, template)
+		if err != nil {
+			fmt.Println("Unable to process template.")
+		}
+		repo.RemoveTempFolder()
 		fmt.Println("Project created. Instructions:\n  cd " + project + "\n  make install or make install-git")
 	} else {
 		fmt.Println("No project name is specified for example:\n  acli my-react-go-app --template react-go")
