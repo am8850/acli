@@ -4,7 +4,7 @@ import { GetDataAsync } from "./services"
 export interface IWeather {
     city: string
     temperature: number
-    condition: string
+    conditions: string
 }
 
 const App = () => {
@@ -21,12 +21,13 @@ const App = () => {
 
     return (
         <div className="container mx-auto">
-            <h1>Vite+Go+TailwindCSS</h1>
+            <h1 className="font-bold text-lg">Vite+Go+TailwindCSS</h1>
+            <br /><br />
+            <label className="uppercase">Temperatures:</label>
+            <br />
             {weather.map((w, i) => <ul>
-                <li key={i}>{w.city} - {w.temperature} - {w.condition}</li>
+                <li key={i}><span className="font-bold">{w.city}:</span> {w.temperature} - {w.conditions}</li>
             </ul>)}
         </div>
     )
 }
-
-export default App
