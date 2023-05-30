@@ -20,23 +20,27 @@ run: buildui
     cp -r frontend/dist/. server/public/.
 	cd server && go run .
 
-post-install:	
+post-install:
+	@echo "Post frontend install..."
 	cp -r post-frontend/. frontend/.
 	rm -rf post-frontend/
 
-install-git:
+init-git:
+	@echo "Initializing git..."
 	git init
 	git branch -m main
-	npm create vite@latest frontend -- --template react-ts
-	cd frontend && npm install && npm install axios && npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p
-	cd server && go mod tidy
-	make post-install
-	
 
-install:
+frontend-install:
+	@echo "frontend install..."
 	npm create vite@latest frontend -- --template react-ts
 	cd frontend && npm install && npm install axios && npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p
 	make post-install
+
+git-install: init-git frontend-install post-install
+	@echo ""
+
+install: frontend-install post-install
+	@echo ""
 
 infra:
 	cd infrastructure && terraform init && terraform apply
