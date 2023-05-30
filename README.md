@@ -3,32 +3,38 @@ A command line utility to scaffold projects quickly.
 
 ## Requirements
 
-Depending on the template you will need:
+Depending on the template you choose, the following will be requirements:
 
-- Go, Rust, C#, Node
-- make
+- Git, make, Docker, Podman
+- Go, Rust, C#, Node, Java
 
 ## Usage
 
-- Scaffold a new project
-  - `aclid init project-name --template vite-go --git-init`
-- List all templates
-  - `aclid ls`
+### Scaffolding a new project
+
+- `acli init project-name --template vite-go --git-init`
+
+### Listing templates
+
+- `acli ls`
+
+### Template information
+
+- `acli info <TEMPLATE_NAME>`
 
 ## Installing, running, and building
 
 ### Install a new project
 
-> Requirements: node
-
+- `aclid init --template react-go`
 - `cd project-name`
-- `make install` 
+- `make install or make git-install` 
 
-### Run in frontend
+### Run in the frontend
 
 - `make runui` 
 
-### Run from server
+### Run from the server
 
 - `make run`
 
@@ -36,8 +42,11 @@ Depending on the template you will need:
 
 > Required: Docker
 
-- `make docker`
+- `make docker or make podman`
 
 ## Templates
 
-### Vite-Golang
+- React-Go
+- React-C#
+- React-C#
+
