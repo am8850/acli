@@ -33,8 +33,7 @@ init-git:
 frontend-install:
 	@echo "frontend install..."
 	npm create vite@latest frontend -- --template react-ts
-	cd frontend && npm install && npm install axios && npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p
-	make post-install
+	cd frontend && npm install && npm install axios && npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p	
 
 git-install: init-git frontend-install post-install
 	@echo ""

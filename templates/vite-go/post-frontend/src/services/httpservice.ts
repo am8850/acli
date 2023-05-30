@@ -1,5 +1,6 @@
 import axios from 'axios'
 
-export function getPosts() {
-    return axios.get('/api/weather')
+export async function GetDataAsync(url: string) {
+    let response = await axios.get(url)
+    return response.data
 }
