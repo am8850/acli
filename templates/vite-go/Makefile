@@ -14,6 +14,13 @@ post-install:
 	cp -r post-frontend/. frontend/.
 	rm -rf post-frontend/
 
+install-git:
+	git init
+	git branch -m main
+	npm create vite@latest frontend -- --template react-ts
+	cd frontend && npm install && npm install axios && npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p
+	make post-install
+
 install:
 	npm create vite@latest frontend -- --template react-ts
 	cd frontend && npm install && npm install axios && npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p
