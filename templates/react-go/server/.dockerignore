@@ -1,0 +1,5 @@
+.env
+.gitignore
+.dockerignore
+server
+server.exe

@@ -50,4 +50,9 @@ infra:
 	cd infrastructure && terraform init && terraform apply
 
 docker:
+	@echo "You may want to rename the image to something more meaningful and with versions"
 	cd server && docker build . -t server:latest
+
+podman:
+	@echo "You may want to rename the image to something more meaningful and with versions"
+	cd server && podman build . -t server:latest	
