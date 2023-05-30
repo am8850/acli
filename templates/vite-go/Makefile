@@ -23,7 +23,8 @@ run: buildui
 post-install:
 	@echo "Post frontend install..."
 	cp -r post-frontend/. frontend/.
-	rm -rf post-frontend/
+	rm -rf post-frontend
+
 
 init-git:
 	@echo "Initializing git..."
@@ -35,10 +36,14 @@ frontend-install:
 	npm create vite@latest frontend -- --template react-ts
 	cd frontend && npm install && npm install axios && npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p	
 
-git-install: init-git frontend-install post-install
+server-install:
+	@echo "server install..."
+	cd server && git mod tidy
+
+git-install: init-git frontend-install post-install server-install
 	@echo ""
 
-install: frontend-install post-install
+install: frontend-install post-install server-install
 	@echo ""
 
 infra:

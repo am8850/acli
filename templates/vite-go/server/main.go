@@ -15,12 +15,22 @@ import (
 	"github.com/joho/godotenv"
 )
 
+type Weather struct {
+	City        string  `json:"city"`
+	Temperature float64 `json:"temperature"`
+	Conditions  string  `json:"conditions"`
+}
+
 var (
 	port string = ""
 )
 
 func init() {
 	godotenv.Load()
+	sport := os.Getenv("APP_PORT")
+	if sport == "" {
+		port = "8080"
+	}
 }
 
 func main() {
@@ -29,6 +39,22 @@ func main() {
 	router.Use(gin.Recovery())
 	router.Use(cors.Default())
 	router.Use(static.Serve("/", static.LocalFile("./public", true)))
+
+	weatherList := []Weather{
+		{
+			City:        "New York",
+			Temperature: 29.5,
+			Conditions:  "Cloudy",
+		},
+		{
+			City:        "London",
+			Temperature: 10.0,
+			Conditions:  "Rainy",
+		},
+	}
+	router.GET("/api/weather", func(c *gin.Context) {
+		c.JSON(http.StatusOK, weatherList)
+	})
 
 	srv := &http.Server{
 		Addr:    ":" + port,
