@@ -1,6 +1,6 @@
 default:
 	@echo ""
-	
+
 buildui:
 	@echo "Building the UI..."
 	cd frontend && npm run build
@@ -17,7 +17,7 @@ run: buildui
 	@echo "Running from the server..."
 	rm -rf server/public
 	mkdir -p server/public
-    cp -r frontend/dist/. server/public/.
+	cp -r frontend/dist/. server/public/.
 	cd server && go run .
 
 post-install:
