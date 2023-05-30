@@ -38,7 +38,7 @@ frontend-install:
 
 server-install:
 	@echo "server install..."
-	cd server && git mod tidy
+	cd server && go mod tidy
 
 git-install: init-git frontend-install post-install server-install
 	@echo ""
