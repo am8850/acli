@@ -15,9 +15,9 @@ var (
 
 	initCmd = &cobra.Command{
 		Use:     "init project_name",
-		Short:   "init a project with a template",
+		Short:   "scaffold a project with a template. Project name is required.",
 		Long:    ``,
-		Aliases: []string{"Init", "create", "Create"},
+		Aliases: []string{"ini", "Ini", "Init", "create", "Create"},
 		Run:     runInit,
 	}
 )

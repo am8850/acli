@@ -12,7 +12,7 @@ import (
 var (
 	lsCmd = &cobra.Command{
 		Use:                   "ls",
-		Short:                 "ls list templates",
+		Short:                 "list templates",
 		Long:                  ``,
 		Aliases:               []string{"list"},
 		Run:                   runLs,

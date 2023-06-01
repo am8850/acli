@@ -10,12 +10,13 @@ import (
 
 var (
 	cfgFile string
+	Version string = ""
 
 	acliCmd = &cobra.Command{
 		Use:           "acli",
 		Short:         "acli – command-line tool to scaffold an new project",
 		Long:          `acli – command-line tool to scaffold a new project.`,
-		Version:       "1.0.0",
+		Version:       Version,
 		SilenceErrors: true,
 		SilenceUsage:  true,
 	}
@@ -30,6 +31,7 @@ func init() {
 	acliCmd.AddCommand(initCmd)
 	acliCmd.AddCommand(lsCmd)
 	acliCmd.AddCommand(infoCmd)
+	acliCmd.AddCommand(verCmd)
 }
 
 func initConfig() {

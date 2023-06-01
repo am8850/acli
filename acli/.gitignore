@@ -1,3 +1,7 @@
 acli
 acli.exe
+acli.mac.amd64
+acli.mac.arm64
 .env
+*.gz
+*.zip
