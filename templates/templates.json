@@ -7,14 +7,14 @@
     },
     {
         "id": 2,
-        "name": "react-csharp",
-        "path": "/vite-csharp",
-        "description": "A template that generates a Vite React Typescript with TailwindCSS and Axios for the frontend and a C# server with static file and APIs server. It includes a Makefile to build locally and to build a container."
+        "name": "react-openai",
+        "path": "/react-openai",
+        "description": "A template that generates a Vite React Typescript project with TailwindCSS, React Router, and Axios for the frontend deployable as static assets."
     },
     {
         "id": 3,
-        "name": "react-rust",
+        "name": "react-go-openai",
         "path": "/vite-rust",
-        "description": "A template that generates a Vite React Typescript with TailwindCSS and Axios for the frontend and a Rust server with static file and APIs server a Rocket router. It includes a Makefile to build locally and to build a container."
+        "description": "A template that generates a Vite React Typescript with TailwindCSS, and Axios for the frontend to process OpenAI prompts and completions."
     }
 ]
