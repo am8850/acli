@@ -29,8 +29,7 @@ frontend-install:
 	@echo "frontend install..."
 	npm create vite@latest frontend -- --template react-ts
 	cd frontend && npm install && npm install axios && npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p
-	cd frontend && npm i react-router-dom && npm i @headlessui/react && npm i @heroicons/react && npm i @tailwindcss/forms
-	cd frontend && npm i flowbite-react && npm i react-markdown && npm i remark-gfm
+	cd frontend && npm i react-router-dom && npm i react-markdown && npm i remark-gfm
 
 server-install:
 	@echo ""
