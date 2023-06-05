@@ -30,8 +30,8 @@ frontend-install:
 	npm create vite@latest frontend -- --template react-ts
 	cd frontend && npm install && npm install axios && npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p
 	cd frontend && npm i react-router-dom && npm i react-markdown && npm i remark-gfm
-	@echo "Make sure to add an .env file on the frontend folder, and add the following values from Azure."
-	@echo "VITE_OPENAI_KEY=<THE API KEY""
+	@echo "Make sure to modify the frontend/.env file, and add the following values from Azure."
+	@echo "VITE_OPENAI_KEY=<THE API KEY>"
 	@echo "VITE_OPENAI_DAVINCI_URL=<FULL URL WITH THE OPENAI MODEL AND VERSION>"
 	@echo "VITE_OPENAI_GTP_UR=<FULL URL WITH THE OPENAI MODEL AND VERSION>"
 
