@@ -1,4 +1,3 @@
-import { Button, Spinner } from "flowbite-react";
 import { IMessage, IPrompt, ISettings } from "../interfaces";
 import Results from "./results";
 import { useState } from "react";
@@ -121,16 +120,23 @@ const Playground = (props: { settings: ISettings, role: string, context: string 
                         onChange={(e) => setState({ ...state, context: e.target.value })}
                     />
                 </div>
-                <div className="flex flex-row mt-4 mb-4">
-                    <Button className="mr-3" pill={true} size={"sm"} onClick={onClickHandle} disabled={state.processing}>
-                        {!state.processing ? "Submit" : <><Spinner className="mr-2" aria-label="Default status example" /> Processing</>}
-                    </Button>
-                    <Button color="warning" className="mr-3" pill={true} size={"sm"} onClick={() => setState({ ...state, prompt: "", payload: "{}", processing: false, completion: "no results" })}>
+                <div className="flex flex-row mt-4 mb-4 gap-x-3">
+                    <button
+                        disabled={state.processing}
+                        onClick={onClickHandle}
+                        className="bg-blue-600 text-white font-bold p-2 rounded border-2 hover:border-blue-900">
+                        Submit
+                    </button>
+                    <button
+                        onClick={() => setState({ ...state, prompt: "", payload: "{}", processing: false, completion: "no results" })}
+                        className="bg-orange-600 text-white font-bold p-2 rounded border-2 hover:border-orange-900">
                         Clear
-                    </Button>
-                    <Button color="warning" className="mr-3" pill={true} size={"sm"} onClick={() => { setState({ ...state, prompt: "", context: "", role: "You are a general assistant.", payload: "{}", usage: "{}", processing: false, completion: "no results" }); setHistory([]) }}>
+                    </button>
+                    <button
+                        onClick={() => { setState({ ...state, prompt: "", context: "", role: "You are a general assistant.", payload: "{}", usage: "{}", processing: false, completion: "no results" }); setHistory([]) }}
+                        className="bg-red-600 text-white font-bold p-2 rounded border-2 hover:border-red-900">
                         Clear All
-                    </Button>
+                    </button>
                 </div>
             </div>
 
