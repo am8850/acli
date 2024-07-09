@@ -10,7 +10,7 @@ var (
 	verCmd = &cobra.Command{
 		Use:                   "ver",
 		Short:                 "version information",
-		Long:                  ``,
+		Long:                  `Provides the build version information`,
 		Aliases:               []string{"version", "Version"},
 		Run:                   runVersion,
 		DisableFlagsInUseLine: true,

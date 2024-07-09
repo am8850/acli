@@ -14,9 +14,9 @@ var (
 	//gitFlag  bool
 
 	initCmd = &cobra.Command{
-		Use:     "init project_name",
-		Short:   "scaffold a project with a template. Project name is required.",
-		Long:    ``,
+		Use:     "init",
+		Short:   "init [folder_name] --template [template_name]",
+		Long:    `acli init - Downloads a template to a target folder.`,
 		Aliases: []string{"ini", "Ini", "Init", "create", "Create"},
 		Run:     runInit,
 	}
@@ -48,7 +48,7 @@ func runInit(ccmd *cobra.Command, args []string) {
 		repo.RemoveTempFolder()
 		fmt.Println("Project created. Instructions:\n  cd " + project + "\n  make install or make install-git")
 	} else {
-		fmt.Println("No project name is specified for example:\n  acli my-react-go-app --template react-go")
+		fmt.Println("No project name is specified for example:\n  acli init my-react-go-app --template react-go")
 	}
 }
 

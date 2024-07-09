@@ -12,8 +12,8 @@ import (
 
 var (
 	infoCmd = &cobra.Command{
-		Use:                   "info template_name",
-		Short:                 "template information",
+		Use:                   "info",
+		Short:                 "template [template-name]",
 		Long:                  ``,
 		Aliases:               []string{"information", "Info"},
 		Run:                   runInfo,

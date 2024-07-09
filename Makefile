@@ -25,6 +25,12 @@ build-mac:
 build-all: build-linux build-windows build-mac
 	@echo ""
 
+install:
+	cd acli && GOOS=linux GOARCH=amd64 go build -ldflags=${linker_flags} -o acli
+	cd acli && sudo mv acli /usr/local/bin
+	@echo "Published to /usr/local/bin/acli"
+
+
 deploy: build-linux
 	mv acli/acli ~/.local/bin/acli
 
